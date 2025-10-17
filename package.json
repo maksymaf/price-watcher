@@ -1,0 +1,27 @@
+{
+  "name": "price-watcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node --watch app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maksymaf/price-watcher.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maksymaf/price-watcher/issues"
+  },
+  "homepage": "https://github.com/maksymaf/price-watcher#readme",
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1"
+  }
+}
