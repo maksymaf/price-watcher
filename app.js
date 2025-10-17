@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({origin: ['http://localhost:3000', 'http://localhost:5500']}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api/products', require('./routes/productRoute'));
 
 (async function main() {
     try{
