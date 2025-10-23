@@ -22,7 +22,10 @@ async function displayProducts() {
                 <div class="info">
                     <h2 id="productName">${item.name}</h2>
                     <p id="productPrice">${item.price} грн</p>
-                    <a id="productLink" target="_blank" href=${item.url}>Перейти до товару ↗</a>
+                    <div class="row space-between">
+                        <a id="productLink" target="_blank" href=${item.url}>Перейти до товару ↗</a>
+                        <button class="subscribe-btn">Subscribe</button>
+                    </div>
                 </div>
             `
             container.appendChild(card);
