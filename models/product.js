@@ -20,6 +20,17 @@ const ProductSchema = new mongoose.Schema({
         required: true,
         trim: true,
         unique: true
+    },
+    isSubscribed: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+    productID: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
     }
 }, {timestamps: true});
 

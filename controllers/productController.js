@@ -20,7 +20,8 @@ const ProductController = {
                 return res.status(400).json({message: "Product with this url already exists"});
             }
 
-            const product = new Product({name, image, price, url});
+            const productID = url.split('/')[4].split('-')[0];
+            const product = new Product({name, image, price, url, productID});
             await product.save();
             res.status(201).json(product);
         }catch(error){
@@ -46,16 +47,17 @@ const ProductController = {
     async patchProduct(req, res){
         try{
             const {id} = req.params;
-            const {name, price, image, url} = req.body;
+            const {name, price, image, url, isSubscribed} = req.body;
 
             const updateObj = {};
             if (name) updateObj.name = name;
             if (price) updateObj.price = price;
             if (image) updateObj.image = image;
             if (url) updateObj.url = url;
+            if (isSubscribed || isSubscribed === false) updateObj.isSubscribed = isSubscribed;
 
-            const updatedProduct = await Product.findByIdAndUpdate(id, updateObj, {new: true});
-
+            const updatedProduct = await Product.findOneAndUpdate({productID: id}, updateObj, {new: true});
+            
             if (!updatedProduct){
                 return res.status(404).json({message: "Product with this id does not exist"})
             }
