@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/products', require('./routes/productRoute'));
 app.use('/api/scrape', require('./routes/scrapeRoute'));
+app.use('/api/track', require('./routes/trackRoute'));
 
 (async function main() {
     try{

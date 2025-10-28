@@ -4,7 +4,7 @@ const urlInput = document.getElementById('urlInput');
 document.addEventListener('DOMContentLoaded', async () => {
     await displayProducts()
     await linkSubscription();
-})
+});
 
 async function subscribe(e) {
     const requestBody = {};
@@ -16,6 +16,20 @@ async function subscribe(e) {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(requestBody)
     });
+
+    const item = e.target.closest('.card');
+    const url = item.querySelector('#productLink').getAttribute('href');
+
+    await fetch('/api/track', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            url: url,
+        })
+    });
+
     await displayProducts();
     await linkSubscription();
 }
@@ -53,7 +67,6 @@ async function displayProducts() {
             `
             container.appendChild(card);
         });
-
     }catch(error){
         console.error(error.message);
         container.textContent = '❌ Не вдалося завантажити товари';

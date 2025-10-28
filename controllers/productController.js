@@ -1,10 +1,19 @@
 const Product = require('../models/product');
 
 const ProductController = {
-    async getAllProducts(_, res){
+    async getAllProducts(req, res){
         try{
-            const products = await Product.find({});
-            res.status(200).json(products);
+            let { isSubscribed } = req.query;
+
+            if (isSubscribed !== undefined){
+                isSubscribed = isSubscribed === 'true'; 
+                const products = await Product.find(isSubscribed || !isSubscribed ? {isSubscribed} : {});
+                return res.status(200).json(products);
+            }else{
+                const products = await Product.find({});
+                return res.status(200).json(products);
+            }
+
         }catch(error){
             console.error(error.message);
             res.status(500).json({message: error.message});
