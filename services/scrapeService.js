@@ -13,7 +13,7 @@ async function scrape(url) {
 
     const name = $('[data-qaid="image_preview"]').attr('alt').split('-')[0].trim();
     const image = $('[data-qaid="image_preview"]').attr('src');
-    const price = parseInt($('[data-qaid="main_product_info"] [data-qaid="product_price"]').text().split(/\s+/)[0]);
+    const price = parseInt($('[data-qaid="main_product_info"] [data-qaid="product_price"]').attr('data-qaprice'));
 
     return {name, image, price, url}
 }

@@ -122,8 +122,7 @@ h1 {
     align-items: center;
 }
 
-.subscribe-btn{
-    background-color: #22c55e;
+.func-btn{
     color: white;
     border: none;
     padding: .6em 1.2em;
@@ -134,25 +133,42 @@ h1 {
     transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color .2s ease;
 }
 
+.func-btn:hover{
+  transform: translateY(-2px);
+}
+
+.func-btn:active{
+  transform: translateY(0);
+}
+
+.subscribe-btn{
+    background-color: #22c55e;
+}
+
+.delete-btn{
+  background-color: #d90b00;
+}
+
 .subscribe-btn:hover {
     background-color: #16a34a; 
-    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
 }
 
+.delete-btn:hover{
+  background-color: #d90b00;
+  box-shadow: 0 4px 12px rgba(203, 91, 91, 0.677);
+}
+
 .subscribe-btn:active {
-    transform: translateY(0);
     box-shadow: 0 2px 6px rgba(34, 197, 94, 0.4);
 }
 
 .already-subscribed{
-    content: '...';
     background-color: black;
 }
 
 .already-subscribed:hover{
     background-color: #fff; 
-    transform: translateY(-2px);
     box-shadow: 0 4px 12px #00d9d5;
     color: black;
 }

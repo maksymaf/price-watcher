@@ -4,6 +4,7 @@ const urlInput = document.getElementById('urlInput');
 document.addEventListener('DOMContentLoaded', async () => {
     await displayProducts()
     await linkSubscription();
+    await linkDelete();
 });
 
 async function subscribe(e) {
@@ -59,7 +60,8 @@ async function displayProducts() {
                     <p id="productPrice">${item.price} грн</p>
                     <div class="row space-between">
                         <a id="productLink" target="_blank" href=${item.url}>Перейти до товару ↗</a>
-                        <button class="subscribe-btn ${item.isSubscribed ? "already-subscribed" : ""}" id=${item.url.split('/')[4].split('-')[0]}>
+                        <button class="func-btn delete-btn" id="${item.productID}">Видалити</button>
+                        <button class="func-btn subscribe-btn ${item.isSubscribed ? "already-subscribed" : ""}" id=${item.url.split('/')[4].split('-')[0]}>
                             ${item.isSubscribed ? "Відписатися" : "Підписатися"}
                         </button>
                     </div>
@@ -105,11 +107,26 @@ async function addProduct(url) {
     }    
 }
 
+async function deleteProduct(e) {
+    await fetch(`http://localhost:3000/api/products/${e.target.id}`, {method: "DELETE"});
+    await displayProducts();
+    await linkDelete();
+}
+
+async function linkDelete() {
+    const allDeleteButtons = document.querySelectorAll('.delete-btn');
+    allDeleteButtons.forEach(item => {
+        item.addEventListener('click', deleteProduct)
+    })
+}
+
+
 scrapeBtn.addEventListener('click', async () => {
     if (urlInput.value){
         await addProduct(urlInput.value.trim());
         await displayProducts();
         await linkSubscription();
+        await linkDelete();
         urlInput.value = '';
     }
 });
